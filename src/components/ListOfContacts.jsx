@@ -74,20 +74,43 @@ function ListOfContacts() {
     }
 
     const handleEdit = (id) => {
-//         const filteredItems = items.filter((i) => i.id === id);
-// // filter() returns an array of all matches, even if just one.
-// if (filteredItems.length > 0) {
-//   setName(filteredItems[0].name);
-//   setEmail(filteredItems[0].email);
-//   setEditId(id);
-// }
+        //         const filteredItems = items.filter((i) => i.id === id);
+        // // filter() returns an array of all matches, even if just one.
+        // if (filteredItems.length > 0) {
+        //   setName(filteredItems[0].name);
+        //   setEmail(filteredItems[0].email);
+        //   setEditId(id);
+        // }
         const item = items.find((i) => i.id === id);
-    if (item) {
-      setName(item.name);
-      setEmail(item.email);
-      setEditId(id); // Set which item we're editing
+        if (item) {
+        setName(item.name);
+        setEmail(item.email);
+        setEditId(id); // Set which item we're editing
+        }
     }
-    }
+
+    const downloadCSV = () => {
+        if (items.length === 0) {
+            alert("No contacts to download!");
+            return;
+        }
+
+        const csvHeader = "Name,Email\n";
+        const csvRows = items.map((c) => `${c.name},${c.email}`).join("\n");
+        const csvData = csvHeader + csvRows;
+
+        const blob = new Blob([csvData], { type: "text/csv" });
+        const url = URL.createObjectURL(blob);
+
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "contacts.csv";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    };
+
 
     return(
         <div>
@@ -97,6 +120,7 @@ function ListOfContacts() {
             <button onClick={addContact}>{editId != null ? "Update Contact" : "Add Contact"}</button>{editId != null ? <button onClick={() => { setEditId(null); setEmail(""); setName("");}} style={{ marginLeft: "10px" }}>Cancel</button> : ""}<br/>
 
             <input type="search" placeholder="Search.." name="search" value={search} onChange={handleChange}  />
+            <button onClick={downloadCSV}>Download CSV</button>
 
             <div>
                 <ul>

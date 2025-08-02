@@ -5,7 +5,6 @@ import './App.css'
 import Todo from "./components/Todo";
 import ShowHidePassword from './components/ShowHidePassword';
 import ListOfContacts from './components/ListOfContacts';
-import ExportContactsToCsv from './components/ExportContactsToCsv';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -15,7 +14,6 @@ function App() {
       <Todo />
       <ShowHidePassword />
       <ListOfContacts />
-      <ExportContactsToCsv />
     </>
   )
 }
