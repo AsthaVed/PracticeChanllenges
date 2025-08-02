@@ -1,10 +1,10 @@
-**Todo (Todo List App)**
+**Todo (Todo List App) -**
 Add, Edit, and Delete contact functionality
 
-**ShowHidePassword**
+**ShowHidePassword -**
 Hide & Show input text on click of button.
 
-**ListOfContacts (Contact Manager App)**
+**ListOfContacts (Contact Manager App) -**
 Add, Edit, and Delete contact functionality
 Search bar to filter contacts
 Persistent storage using localStorage
